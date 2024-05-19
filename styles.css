@@ -86,7 +86,7 @@ footer {
 /* Make the iframe fill the entire map container */
 .map-container iframe {
     width: 90%;
-    height: 80%;
+    height: 60%;
     border: none; /* Remove iframe border */
 }
 

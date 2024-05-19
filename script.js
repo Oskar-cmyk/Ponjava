@@ -116,4 +116,3 @@ function initializeMouseEffect() {
     // Initial text content of the button based on the initial state of the effect
     toggleButton.textContent = isMoving ? 'Razgrni' : 'Preteguj';
 }
-
