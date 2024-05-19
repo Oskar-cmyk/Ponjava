@@ -2,7 +2,7 @@
 .body, html {
     font-family: Helvetica, Arial, sans-serif; /* Change font to Helvetica */
     height: 100%;
-    margin: 100px;
+    margin: 1em;
     display: flex;
     justify-content: center;
     align-items: normal;
@@ -72,3 +72,15 @@ footer {
     margin-top: auto; /* Push the footer to the bottom */
 }
 
+/* Media query for smaller screens */
+@media screen and (max-width: 768px) {
+    .rectangle {
+        width: 80vw; /* Reduce width on smaller screens */
+        height: 40vh; /* Reduce height on smaller screens */
+        font-size: 18px; /* Adjust font size on smaller screens */
+    }
+
+    .text {
+        font-size: 16px; /* Adjust font size of text on smaller screens */
+    }
+}
