@@ -102,3 +102,7 @@ footer {
         font-size: 16px; /* Adjust font size of text on smaller screens */
     }
 }
+a h1 {
+    color: inherit; /* Inherit text color from parent */
+    text-decoration: none; /* Remove underline */
+}
