@@ -3,6 +3,7 @@ const toggleButton = document.getElementById('toggleButton');
 
 // Function to update the rectangle based on mouse movement
 function updateRectangle(event) {
+    if (!isMoving) return; // Skip updating if effect is off
     const rectangle = document.querySelector('.rectangle');
     const container = document.querySelector('.container');
     const rect = container.getBoundingClientRect();
@@ -49,11 +50,9 @@ function toggleEffect() {
 }
 
 // Event listener to handle mouse movement and update the rectangle
-document.addEventListener('mousemove', function(event) {
-    if (isMoving) {
-        updateRectangle(event);
-    }
-});
+if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    document.addEventListener('mousemove', updateRectangle);
+}
 
 // Event listener to handle button click and toggle the effect
 toggleButton.addEventListener('click', toggleEffect);
