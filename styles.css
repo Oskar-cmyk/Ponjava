@@ -1,0 +1,73 @@
+/* styles.css */
+.body, html {
+    font-family: Helvetica, Arial, sans-serif; /* Change font to Helvetica */
+    height: 100%;
+    margin: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: normal;
+    background-color: #f0f0f0;
+
+}
+
+.container {
+    perspective: 1000px;
+}
+
+.rectangle {
+    width: 50vw;
+    height: 50vh;
+    /*border: 2px solid #4CAF50;  Add border */
+    background-color: aqua;
+    position: relative; /* Required for positioning pseudo-elements */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    text-decoration: none; /* Remove default underline for anchor tag */
+}
+
+.text {
+    position: absolute;
+    color: #000000; /* Text color */
+    cursor: pointer; /* Change cursor on hover */
+    pointer-events: auto; /* Allow clicks on text */
+}
+
+.top-left {
+    top:20px; /* Position above the rectangle */
+    left: 10%; /* Center horizontally */
+    transform: translateX(-50%); /* Center text */
+}
+
+.bottom-left {
+    bottom: 20px; /* Position below the rectangle */
+    left: 15%; /* Center horizontally */
+    transform: translateX(-50%); /* Center text */
+}
+
+.top-right {
+    top: 35px; /* Center vertically */
+    right: 5%; /* Position to the left of the rectangle */
+    transform: translateY(-50%); /* Center text */
+}
+
+.bottom-right {
+    bottom: 10px; /* Center vertically */
+    right: 5%; /* Position to the right of the rectangle */
+    transform: translateY(-50%); /* Center text */
+}
+#toggleButton {
+    position: fixed;
+    top: 20px; /* Adjust top position */
+    right: 20px; /* Adjust right position */
+}
+
+/* Footer styles */
+footer {
+    color: #000000;
+    padding: 20px;
+    text-align: center;
+    margin-top: auto; /* Push the footer to the bottom */
+}
