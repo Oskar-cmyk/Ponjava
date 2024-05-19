@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: normal;
-    background-color: #f0f0f0;
+
 
 }
 
@@ -65,7 +65,7 @@
 
 /* Footer styles */
 footer {
-    color: #000000;
+
     padding: 20px;
     text-align: center;
     margin-top: auto; /* Push the footer to the bottom */
@@ -105,4 +105,53 @@ footer {
 a h1 {
     color: inherit; /* Inherit text color from parent */
     text-decoration: none; /* Remove underline */
+}
+
+/* styles.css */
+/* Define variables for light mode */
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #000000;
+    --rectangle-color-light: aqua;
+    --link-color-light: #0000FF; /* Default link color */
+}
+
+/* Define variables for dark mode */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background-color-dark: #000000;
+        --text-color-dark: #ffffff;
+        --rectangle-color-dark: #1b0216;
+        --link-color-dark: #FFFFFF; /* Link color for dark mode */
+    }
+}
+
+/* Apply styles using CSS variables */
+body {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+}
+
+.rectangle {
+    background-color: var(--rectangle-color-light);
+}
+
+.text {
+    color: var(--link-color-light); /* Default link color */
+}
+
+/* Media query for dark mode */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: var(--background-color-dark);
+        color: var(--text-color-dark);
+    }
+
+    .rectangle {
+        background-color: var(--rectangle-color-dark);
+    }
+
+    .text {
+        color: var(--link-color-dark); /* Link color for dark mode */
+    }
 }
