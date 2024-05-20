@@ -129,17 +129,23 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('requestPermissionButton').addEventListener('click', function() {
         // Check if the DeviceOrientationEvent is supported
         if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            console.log('Requesting permission for device orientation');
             // Request permission
             DeviceOrientationEvent.requestPermission()
                 .then(response => {
                     if (response === 'granted') {
+                        console.log('Permission granted');
                         window.addEventListener('deviceorientation', handleOrientation);
                     } else {
+                        console.log('Permission denied');
                         alert('Permission to access gyroscope data was denied.');
                     }
                 })
-                .catch(console.error);
+                .catch(error => {
+                    console.error('Error requesting permission', error);
+                });
         } else {
+            console.log('DeviceOrientationEvent.requestPermission is not a function, adding event listener directly');
             // Handle non-iOS devices
             window.addEventListener('deviceorientation', handleOrientation);
         }
@@ -147,10 +153,17 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 function handleOrientation(event) {
-    const alpha = event.alpha;
-    const beta = event.beta;
-    const gamma = event.gamma;
+    if (event.alpha === null || event.beta === null || event.gamma === null) {
+        console.log('Device orientation data not available');
+        return;
+    }
+
+    const alpha = event.alpha.toFixed(2);
+    const beta = event.beta.toFixed(2);
+    const gamma = event.gamma.toFixed(2);
 
     const gyroDataDiv = document.getElementById('gyroData');
     gyroDataDiv.innerHTML = `Alpha: ${alpha}<br>Beta: ${beta}<br>Gamma: ${gamma}`;
+
+    console.log(`Alpha: ${alpha}, Beta: ${beta}, Gamma: ${gamma}`);
 }
