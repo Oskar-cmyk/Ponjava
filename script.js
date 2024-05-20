@@ -1,14 +1,17 @@
-// Check if the user is on a mobile device
-const isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+// Check if the user is on an iPhone
+const isIPhone = /iPhone|iPod/i.test(navigator.userAgent);
 
-if (isMobileDevice && window.DeviceOrientationEvent) {
-    // Execute the script using gyroscope for mobile devices
+if (isIPhone && window.DeviceOrientationEvent) {
+    // Execute the script using gyroscope for iPhones
     initializeGyroEffect();
 } else {
-    // Execute the script using mouse movement for non-mobile devices
+    // Hide the "Request Permission" button on other devices
+    const requestPermissionButton = document.getElementById('requestPermissionButton');
+    requestPermissionButton.style.display = 'none';
+
+    // Execute the script using mouse movement for non-iPhone devices
     initializeMouseEffect();
 }
-
 function initializeGyroEffect() {
     let isMoving = true; // Initialize to true for "Preteguj" option
     const toggleButton = document.getElementById('toggleButton');
@@ -52,30 +55,34 @@ function initializeGyroEffect() {
     }
 
     // Check if the DeviceOrientationEvent requestPermission function exists (iOS 13+)
-    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-        requestPermissionButton.style.display = 'block'; // Show the permission button
-        requestPermissionButton.addEventListener('click', function() {
-            DeviceOrientationEvent.requestPermission()
-                .then(response => {
-                    if (response === 'granted') {
-                        enableGyro();
-                        requestPermissionButton.style.display = 'none'; // Hide the permission button
-                    } else {
-                        alert('Permission to access gyroscope data was denied.');
-                    }
-                })
-                .catch(console.error);
-        });
-    } else {
-        // If no permission is required, enable gyro directly
-        enableGyro();
-    }
+if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    requestPermissionButton.style.display = 'block'; // Show the permission button
+    requestPermissionButton.addEventListener('click', function() {
+        DeviceOrientationEvent.requestPermission()
+            .then(response => {
+                if (response === 'granted') {
+                    enableGyro();
+                    requestPermissionButton.style.display = 'none'; // Hide the permission button
+                    toggleButton.style.display = 'block'; // Show the toggle button
+                    toggleEffect(); // Enable the effect and change button text to "Razgrni"
+                } else {
+                    alert('Permission to access gyroscope data was denied.');
+                }
+            })
+            .catch(console.error);
+    });
+} else {
+    // If no permission is required, enable gyro directly
+    enableGyro();
+}
 
     // Event listener to handle button click and toggle the effect
     toggleButton.addEventListener('click', toggleEffect);
 
-    // Initial text content of the button based on the initial state of the effect
-    toggleButton.textContent = isMoving ? 'Razgrni' : 'Preteguj';
+// Initial text content of the button based on the initial state of the effect
+toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
+
+    toggleButton.style.display = 'none'; // Hide the toggle button initially on iPhones
 }
 
 function initializeMouseEffect() {

@@ -16,6 +16,7 @@
 .rectangle {
     width: 50vw;
     height: 50vh;
+    margin-top: 10vh;
     /*border: 2px solid #4CAF50;  Add border */
     background-color: aqua;
     position: relative; /* Required for positioning pseudo-elements */
@@ -61,6 +62,12 @@
     position: fixed;
     top: 20px; /* Adjust top position */
     right: 20px; /* Adjust right position */
+}
+#toggleButton, #requestPermissionButton {
+    position: fixed;
+    top: 20px; /* Adjust top position */
+    right: 20px; /* Adjust right position */
+    z-index: 999; /* Ensure it's above other content */
 }
 
 /* Footer styles */
@@ -154,4 +161,10 @@ body {
     .text {
         color: var(--link-color-dark); /* Link color for dark mode */
     }
+}
+
+.instagram-link {
+    color: red;
+    text-decoration: underline;
+    cursor: pointer;
 }
