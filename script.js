@@ -146,3 +146,31 @@ function initializeMouseEffect() {
     // Initial text content of the button based on the initial state of the effect
     toggleButton.textContent = isMoving ? 'Razgrni' : 'Preteguj';
 }
+
+// Function to generate a random color in hexadecimal format
+function getRandomColor() {
+    // Generate random RGB values
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+
+    // Convert RGB to hexadecimal format
+    const color = '#' + r.toString(16).padStart(2, '0') + g.toString(16).padStart(2, '0') + b.toString(16).padStart(2, '0');
+    
+    return color;
+}
+
+// Function to apply the random color to the rectangle element
+function applyRandomColor() {
+    const rectangle = document.getElementById('rectangle');
+    const storedColor = localStorage.getItem('rectangleColor');
+    const randomColor = storedColor || getRandomColor();
+    rectangle.style.backgroundColor = randomColor;
+    localStorage.setItem('rectangleColor', randomColor);
+}
+
+// Apply the random color when the page is loaded
+document.addEventListener('DOMContentLoaded', applyRandomColor);
+
+// Apply a new random color every hour
+setInterval(applyRandomColor, 3600000); // 3600000 milliseconds = 1 hour
