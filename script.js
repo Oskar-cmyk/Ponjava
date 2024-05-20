@@ -116,3 +116,41 @@ function initializeMouseEffect() {
     // Initial text content of the button based on the initial state of the effect
     toggleButton.textContent = isMoving ? 'Razgrni' : 'Preteguj';
 }
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Function to detect if the user is on an iPhone
+    function isiPhone() {
+        return /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    }
+
+    if (isiPhone()) {
+        document.getElementById('requestPermissionButton').style.display = 'block';
+    }
+
+    document.getElementById('requestPermissionButton').addEventListener('click', function() {
+        // Check if the DeviceOrientationEvent is supported
+        if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+            // Request permission
+            DeviceOrientationEvent.requestPermission()
+                .then(response => {
+                    if (response === 'granted') {
+                        window.addEventListener('deviceorientation', handleOrientation);
+                    } else {
+                        alert('Permission to access gyroscope data was denied.');
+                    }
+                })
+                .catch(console.error);
+        } else {
+            // Handle non-iOS devices
+            window.addEventListener('deviceorientation', handleOrientation);
+        }
+    });
+});
+
+function handleOrientation(event) {
+    const alpha = event.alpha;
+    const beta = event.beta;
+    const gamma = event.gamma;
+
+    const gyroDataDiv = document.getElementById('gyroData');
+    gyroDataDiv.innerHTML = `Alpha: ${alpha}<br>Beta: ${beta}<br>Gamma: ${gamma}`;
+}

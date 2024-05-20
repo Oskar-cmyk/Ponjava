@@ -10,6 +10,11 @@
     <meta name="robots" content="index, follow">
     <title>Ponjava</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        #requestPermissionButton {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <a href="https://www.instagram.com/foto_rudnik/" target="_blank" rel="noopener noreferrer"><img src="graphic/Instagram_Glyph_White.png" alt="Instagram" class="instagram-icon" width="30" height="30"></a>
@@ -22,6 +27,10 @@
             <a href="preteklo.html" class="text bottom-right" id="top-Righttext">Preteklo</a>
         </div>
     </div>
+    
+    <button id="requestPermissionButton">Enable Gyroscope</button>
+    <div id="gyroData">Gyroscope data will appear here.</div>
+
     <script src="script.js"></script>
 </body>
 <footer>©Ponjava 2024</footer>
