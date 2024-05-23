@@ -1,17 +1,19 @@
-// Check if the user is on an iPhone
+// Check if the user is on an iPhone or Android
 const isIPhone = /iPhone|iPod/i.test(navigator.userAgent);
+const isAndroid = /Android/i.test(navigator.userAgent);
 
-if (isIPhone && window.DeviceOrientationEvent) {
-    // Execute the script using gyroscope for iPhones
+if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
+    // Execute the script using gyroscope for iPhones and Android devices
     initializeGyroEffect();
 } else {
     // Hide the "Request Permission" button on other devices
     const requestPermissionButton = document.getElementById('requestPermissionButton');
     requestPermissionButton.style.display = 'none';
 
-    // Execute the script using mouse movement for non-iPhone devices
+    // Execute the script using mouse movement for non-gyroscope devices
     initializeMouseEffect();
 }
+
 function initializeGyroEffect() {
     let isMoving = true; // Initialize to true for "Preteguj" option
     const toggleButton = document.getElementById('toggleButton');
@@ -55,34 +57,38 @@ function initializeGyroEffect() {
     }
 
     // Check if the DeviceOrientationEvent requestPermission function exists (iOS 13+)
-if (typeof DeviceOrientationEvent.requestPermission === 'function') {
-    requestPermissionButton.style.display = 'block'; // Show the permission button
-    requestPermissionButton.addEventListener('click', function() {
-        DeviceOrientationEvent.requestPermission()
-            .then(response => {
-                if (response === 'granted') {
-                    enableGyro();
-                    requestPermissionButton.style.display = 'none'; // Hide the permission button
-                    toggleButton.style.display = 'block'; // Show the toggle button
-                    toggleEffect(); // Enable the effect and change button text to "Razgrni"
-                } else {
-                    alert('Permission to access gyroscope data was denied.');
-                }
-            })
-            .catch(console.error);
-    });
-} else {
-    // If no permission is required, enable gyro directly
-    enableGyro();
-}
+    if (isIPhone && typeof DeviceOrientationEvent.requestPermission === 'function') {
+        requestPermissionButton.style.display = 'block'; // Show the permission button
+        requestPermissionButton.addEventListener('click', function() {
+            DeviceOrientationEvent.requestPermission()
+                .then(response => {
+                    if (response === 'granted') {
+                        enableGyro();
+                        requestPermissionButton.style.display = 'none'; // Hide the permission button
+                        toggleButton.style.display = 'block'; // Show the toggle button
+                        toggleEffect(); // Enable the effect and change button text to "Razgrni"
+                    } else {
+                        alert('Permission to access gyroscope data was denied.');
+                    }
+                })
+                .catch(console.error);
+        });
+    } else {
+        // If no permission is required or it's an Android device, enable gyro directly
+        enableGyro();
+        toggleButton.style.display = 'block'; // Show the toggle button
+    }
 
     // Event listener to handle button click and toggle the effect
     toggleButton.addEventListener('click', toggleEffect);
 
-// Initial text content of the button based on the initial state of the effect
-toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
+    // Initial text content of the button based on the initial state of the effect
+    toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
 
-    toggleButton.style.display = 'none'; // Hide the toggle button initially on iPhones
+    // Hide the toggle button initially on iPhones
+    if (isIPhone) {
+        toggleButton.style.display = 'none';
+    }
 }
 
 function initializeMouseEffect() {
@@ -144,7 +150,7 @@ function initializeMouseEffect() {
     toggleButton.addEventListener('click', toggleEffect);
 
     // Initial text content of the button based on the initial state of the effect
-    toggleButton.textContent = isMoving ? 'Razgrni' : 'Preteguj';
+    toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
 }
 
 // Function to generate a random color in hexadecimal format
@@ -160,17 +166,26 @@ function getRandomColor() {
     return color;
 }
 
-// Function to apply the random color to the rectangle element
-function applyRandomColor() {
+// Function to apply a new color if the stored color is older than one hour
+function applyHourlyColor() {
     const rectangle = document.getElementById('rectangle');
+    const now = Date.now();
+    const lastUpdateTime = localStorage.getItem('lastUpdateTime');
     const storedColor = localStorage.getItem('rectangleColor');
-    const randomColor = storedColor || getRandomColor();
-    rectangle.style.backgroundColor = randomColor;
-    localStorage.setItem('rectangleColor', randomColor);
+    const oneHour = 60 * 60 * 1000;
+
+    if (!storedColor || !lastUpdateTime || now - lastUpdateTime > oneHour) {
+        const newColor = getRandomColor();
+        localStorage.setItem('rectangleColor', newColor);
+        localStorage.setItem('lastUpdateTime', now);
+        rectangle.style.backgroundColor = newColor;
+    } else {
+        rectangle.style.backgroundColor = storedColor;
+    }
 }
 
 // Apply the random color when the page is loaded
-document.addEventListener('DOMContentLoaded', applyRandomColor);
+document.addEventListener('DOMContentLoaded', applyHourlyColor);
 
 // Apply a new random color every hour
-setInterval(applyRandomColor, 3600000); // 3600000 milliseconds = 1 hour
+setInterval(applyHourlyColor, 3600000); // 3600000 milliseconds = 1 hour
