@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,24 +12,29 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <button id="slButton">Slovenščina</button>
+        <button id="enButton">English</button>
+    </header>
+    
     <div class="container">
         <div class="rectangle" id="rectangle">
             <p class="text" id="text">Ponjava</p>
-            <a href="o_nas.html" class="text top-left" id="top-leftText">O nas</a>
-            <a href="kontakt.html" class="text top-right" id="bottom-leftText">Kontakt</a>
-            <a href="razstavljalci.html" class="text bottom-left" id="bottom-rightText">Umetnice_ki</a>
-            <a href="preteklo.html" class="text bottom-right" id="top-Righttext">Preteklo</a>
+            <a href="o_nas.html" class="text top-left" data-lang-sl="O nas" data-lang-en="About Us">O nas</a>
+            <a href="kontakt.html" class="text top-right" data-lang-sl="Kontakt" data-lang-en="Contact">Kontakt</a>
+            <a href="razstavljalci.html" class="text bottom-left" data-lang-sl="Umetnice_ki" data-lang-en="Artists">Umetnice_ki</a>
+            <a href="preteklo.html" class="text bottom-right" data-lang-sl="Preteklo" data-lang-en="Past">Preteklo</a>
         </div>
     </div>
     
     <div id="toggleButtons">
-        <button id="toggleButton">Preteguj</button>
-        <button id="requestPermissionButton">Preteguj</button>
+        <button id="toggleButton" data-lang-sl="Preteguj" data-lang-en="Stretch">Preteguj</button>
+        <button id="requestPermissionButton" data-lang-sl="Preteguj" data-lang-en="Stretch">Preteguj</button>
     </div>
     
-
     <script src="script.js"></script>
+    <script src="script_ponjava.js"></script>
+
 </body>
 <footer>©Ponjava 2024 | <a href="https://www.instagram.com/foto_rudnik/" target="_blank" rel="noopener noreferrer" class="instagram-link">Instagram</a></footer>
-
 </html>
