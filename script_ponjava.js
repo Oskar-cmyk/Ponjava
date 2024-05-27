@@ -14,7 +14,7 @@ if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
     initializeMouseEffect();
 }
 
- function initializeGyroEffect() {
+function initializeGyroEffect() {
     let isMoving = true; // Initialize to true for "Preteguj" option
     const toggleButton = document.getElementById('toggleButton');
     const requestPermissionButton = document.getElementById('requestPermissionButton');
@@ -85,12 +85,6 @@ if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
         // Initial text content of the button based on the initial state of the effect
         toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
     }
-
-    // Event listener to handle button click and toggle the effect
-    toggleButton.addEventListener('click', toggleEffect);
-
-    // Initial text content of the button based on the initial state of the effect
-    toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
 
     // Hide the toggle button initially on iPhones
     if (isIPhone) {
@@ -196,4 +190,3 @@ document.addEventListener('DOMContentLoaded', applyHourlyColor);
 
 // Apply a new random color every hour
 setInterval(applyHourlyColor, 3600000); // 3600000 milliseconds = 1 hour
-
