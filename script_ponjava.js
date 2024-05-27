@@ -15,8 +15,7 @@ if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
 }
 
 function initializeGyroEffect() {
-    let isMoving = true; // Initialize to true for "Preteguj" option
-    const toggleButton = document.getElementById('toggleButton');
+    let isMoving = true; // Initialize to true for "Razgrni" option
     const requestPermissionButton = document.getElementById('requestPermissionButton');
 
     // Function to update the rectangle based on device orientation
@@ -40,32 +39,11 @@ function initializeGyroEffect() {
         rectangle.style.transform = 'none'; // Reset the transformation
     }
 
-    // Function to toggle the effect and update the button text
-    function toggleEffect() {
-        isMoving = !isMoving; // Toggle the flag
-        updateToggleButtonText();
-        if (!isMoving) {
-            resetRectangle(); // Reset the rectangle to its natural position
-        }
-    }
-
-    // Function to update the toggle button text
-    function updateToggleButtonText() {
-        if (isMoving) {
-            toggleButton.textContent = 'Razgrni'; // Set button text to "Preteguj" when effect is on
-        } else {
-            toggleButton.textContent = 'Preteguj'; // Set button text to "Razgrni" when effect is off
-        }
-    }
-
     // Event listener to handle device orientation and update the rectangle
     function enableGyro() {
         window.addEventListener('deviceorientation', updateRectangle);
-        isMoving = true;
-        updateToggleButtonText();
     }
 
-    // Check if the DeviceOrientationEvent requestPermission function exists (iOS 13+)
     if (isIPhone && typeof DeviceOrientationEvent.requestPermission === 'function') {
         requestPermissionButton.style.display = 'block'; // Show the permission button
         requestPermissionButton.addEventListener('click', function() {
@@ -74,30 +52,20 @@ function initializeGyroEffect() {
                     if (response === 'granted') {
                         enableGyro();
                         requestPermissionButton.style.display = 'none'; // Hide the permission button
-                        toggleButton.style.display = 'block'; // Show the toggle button
                     } else {
                         alert('Permission to access gyroscope data was denied.');
                     }
                 })
                 .catch(console.error);
         });
-    } else {
-        // If no permission is required or it's an Android device, enable gyro directly
+    } else if (isAndroid) {
+        // If it's an Android device, enable gyro directly
         enableGyro();
-        toggleButton.style.display = 'block'; // Show the toggle button
-        
-        // Event listener to handle button click and toggle the effect
-        toggleButton.addEventListener('click', toggleEffect);
-    }
-
-    // Hide the toggle button initially on iPhones
-    if (isIPhone) {
-        toggleButton.style.display = 'none';
     }
 }
 
 function initializeMouseEffect() {
-    let isMoving = true; // Initialize to true for "Preteguj" option
+    let isMoving = true; // Initialize to true for "Razgrni" option
     const toggleButton = document.getElementById('toggleButton');
 
     // Function to update the rectangle based on mouse movement
@@ -135,24 +103,6 @@ function initializeMouseEffect() {
     function resetRectangle() {
         const rectangle = document.querySelector('.rectangle');
         rectangle.style.transform = 'none'; // Reset the transformation
-    }
-
-    // Function to toggle the effect and update the button text
-    function toggleEffect() {
-        isMoving = !isMoving; // Toggle the flag
-        updateToggleButtonText();
-        if (!isMoving) {
-            resetRectangle(); // Reset the rectangle to its natural position
-        }
-    }
-
-    // Function to update the toggle button text
-    function updateToggleButtonText() {
-        if (isMoving) {
-            toggleButton.textContent = 'Razgrni'; // Set button text to "Preteguj" when effect is on
-        } else {
-            toggleButton.textContent = 'Preteguj'; // Set button text to "Razgrni" when effect is off
-        }
     }
 
     // Event listener to handle mouse movement and update the rectangle
