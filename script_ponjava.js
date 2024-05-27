@@ -25,7 +25,7 @@ function initializeGyroEffect() {
         const rectangle = document.querySelector('.rectangle');
         const container = document.querySelector('.container');
         const rect = container.getBoundingClientRect();
-        
+
         // Extract rotation angles from device orientation data
         const rotateX = event.beta; // Vertical rotation (around x-axis)
         const rotateY = event.gamma; // Horizontal rotation (around y-axis)
@@ -66,8 +66,8 @@ function initializeGyroEffect() {
                         enableGyro();
                         requestPermissionButton.style.display = 'none'; // Hide the permission button
                         toggleButton.style.display = 'block'; // Show the toggle button
-                        toggleEffect(); // Enable the effect and change button text to "Razgrni"
-                        toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni'; // Change the button text based on the state
+                        isMoving = true; // Start movement immediately
+                        toggleButton.textContent = 'Preteguj'; // Set initial button text
                     } else {
                         alert('Permission to access gyroscope data was denied.');
                     }
@@ -79,7 +79,7 @@ function initializeGyroEffect() {
         enableGyro();
         toggleButton.style.display = 'block'; // Show the toggle button
         
-         // Event listener to handle button click and toggle the effect
+        // Event listener to handle button click and toggle the effect
         toggleButton.addEventListener('click', toggleEffect);
 
         // Initial text content of the button based on the initial state of the effect
