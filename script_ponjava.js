@@ -105,6 +105,25 @@ function initializeMouseEffect() {
         rectangle.style.transform = 'none'; // Reset the transformation
     }
 
+    // Function to toggle the effect and update the button text
+    function toggleEffect() {
+        isMoving = !isMoving; // Toggle the flag
+        updateToggleButtonText();
+        if (!isMoving) {
+            resetRectangle(); // Reset the rectangle to its natural position
+        }
+    }
+
+    // Function to update the toggle button text
+    function updateToggleButtonText() {
+        if (isMoving) {
+            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is on
+        } else {
+            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is off
+        }
+        console.log(`Button text: ${toggleButton.textContent}`); // Debugging: Log the button text
+    }
+
     // Event listener to handle mouse movement and update the rectangle
     document.addEventListener('mousemove', updateRectangle);
 
