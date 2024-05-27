@@ -67,6 +67,7 @@ if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
                         requestPermissionButton.style.display = 'none'; // Hide the permission button
                         toggleButton.style.display = 'block'; // Show the toggle button
                         toggleEffect(); // Enable the effect and change button text to "Razgrni"
+                        toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni'; // Change the button text based on the state
                     } else {
                         alert('Permission to access gyroscope data was denied.');
                     }
@@ -77,6 +78,12 @@ if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
         // If no permission is required or it's an Android device, enable gyro directly
         enableGyro();
         toggleButton.style.display = 'block'; // Show the toggle button
+        
+         // Event listener to handle button click and toggle the effect
+        toggleButton.addEventListener('click', toggleEffect);
+
+        // Initial text content of the button based on the initial state of the effect
+        toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
     }
 
     // Event listener to handle button click and toggle the effect
