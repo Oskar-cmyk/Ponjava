@@ -43,17 +43,26 @@ function initializeGyroEffect() {
     // Function to toggle the effect and update the button text
     function toggleEffect() {
         isMoving = !isMoving; // Toggle the flag
-        if (isMoving) {
-            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is on
-        } else {
-            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is off
+        updateToggleButtonText();
+        if (!isMoving) {
             resetRectangle(); // Reset the rectangle to its natural position
+        }
+    }
+
+    // Function to update the toggle button text
+    function updateToggleButtonText() {
+        if (isMoving) {
+            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is on
+        } else {
+            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is off
         }
     }
 
     // Event listener to handle device orientation and update the rectangle
     function enableGyro() {
         window.addEventListener('deviceorientation', updateRectangle);
+        isMoving = true;
+        updateToggleButtonText();
     }
 
     // Check if the DeviceOrientationEvent requestPermission function exists (iOS 13+)
@@ -66,8 +75,14 @@ function initializeGyroEffect() {
                         enableGyro();
                         requestPermissionButton.style.display = 'none'; // Hide the permission button
                         toggleButton.style.display = 'block'; // Show the toggle button
-                        isMoving = true; // Start movement immediately
-                        toggleButton.textContent = 'Preteguj'; // Set initial button text
+                        toggleEffect(); // Enable the effect and change button text to "Razgrni"
+                        toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni'; // Change the button text based on the state
+    
+                        // Event listener to handle button click and toggle the effect
+                        toggleButton.addEventListener('click', toggleEffect);
+    
+                        // Initial text content of the button based on the initial state of the effect
+                        toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
                     } else {
                         alert('Permission to access gyroscope data was denied.');
                     }
@@ -78,10 +93,10 @@ function initializeGyroEffect() {
         // If no permission is required or it's an Android device, enable gyro directly
         enableGyro();
         toggleButton.style.display = 'block'; // Show the toggle button
-        
+    
         // Event listener to handle button click and toggle the effect
         toggleButton.addEventListener('click', toggleEffect);
-
+    
         // Initial text content of the button based on the initial state of the effect
         toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
     }
@@ -136,11 +151,18 @@ function initializeMouseEffect() {
     // Function to toggle the effect and update the button text
     function toggleEffect() {
         isMoving = !isMoving; // Toggle the flag
-        if (isMoving) {
-            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is on
-        } else {
-            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is off
+        updateToggleButtonText();
+        if (!isMoving) {
             resetRectangle(); // Reset the rectangle to its natural position
+        }
+    }
+
+    // Function to update the toggle button text
+    function updateToggleButtonText() {
+        if (isMoving) {
+            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is on
+        } else {
+            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is off
         }
     }
 
@@ -151,7 +173,7 @@ function initializeMouseEffect() {
     toggleButton.addEventListener('click', toggleEffect);
 
     // Initial text content of the button based on the initial state of the effect
-    toggleButton.textContent = isMoving ? 'Preteguj' : 'Razgrni';
+    updateToggleButtonText();
 }
 
 // Function to generate a random color in hexadecimal format
