@@ -52,9 +52,9 @@ function initializeGyroEffect() {
     // Function to update the toggle button text
     function updateToggleButtonText() {
         if (isMoving) {
-            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is on
+            toggleButton.textContent = 'Razgrni'; // Set button text to "Preteguj" when effect is on
         } else {
-            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is off
+            toggleButton.textContent = 'Preteguj'; // Set button text to "Razgrni" when effect is off
         }
     }
 
@@ -149,9 +149,9 @@ function initializeMouseEffect() {
     // Function to update the toggle button text
     function updateToggleButtonText() {
         if (isMoving) {
-            toggleButton.textContent = 'Preteguj'; // Set button text to "Preteguj" when effect is on
+            toggleButton.textContent = 'Razgrni'; // Set button text to "Preteguj" when effect is on
         } else {
-            toggleButton.textContent = 'Razgrni'; // Set button text to "Razgrni" when effect is off
+            toggleButton.textContent = 'Preteguj'; // Set button text to "Razgrni" when effect is off
         }
     }
 
