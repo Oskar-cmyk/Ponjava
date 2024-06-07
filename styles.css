@@ -7,8 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: normal;
-
-
+    margin-bottom: 16px;
 }
 
 
@@ -92,9 +91,11 @@ footer {
 
 /* Make the iframe fill the entire map container */
 .map-container iframe {
-    width: 90%;
-    height: 60%;
     border: none; /* Remove iframe border */
+}
+.artist img {
+    width: 20vw;
+    height: 100%;
 }
 
 /* Media query for smaller screens */
@@ -107,6 +108,10 @@ footer {
 
     .text {
         font-size: 16px; /* Adjust font size of text on smaller screens */
+    }
+    .artist img {
+        width: 80vw;
+        height: 100%;
     }
 }
 a h1 {
@@ -147,6 +152,7 @@ body {
     color: var(--link-color-light); /* Default link color */
 }
 
+
 /* Media query for dark mode */
 @media (prefers-color-scheme: dark) {
     body {
@@ -161,6 +167,7 @@ body {
     .text {
         color: var(--link-color-dark); /* Link color for dark mode */
     }
+    
 }
 
 .instagram-link {
@@ -172,3 +179,4 @@ body {
 p {
     pointer-events: none;
 }
+

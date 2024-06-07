@@ -1,7 +1,15 @@
 function setLanguage(lang) {
+    // Update elements with specific translations
     const elementsToTranslate = document.querySelectorAll(`[data-lang-${lang}]`);
     elementsToTranslate.forEach(element => {
-        element.textContent = element.getAttribute(`data-lang-${lang}`);
+        // If it's a support element, handle it separately
+        if (element.classList.contains('support')) {
+            const text = element.getAttribute(`data-lang-${lang}`);
+            const name = element.textContent.split(': ').slice(1).join(': ') || element.textContent;
+            element.textContent = text + name;
+        } else {
+            element.textContent = element.getAttribute(`data-lang-${lang}`);
+        }
     });
 
     // Save the language preference
