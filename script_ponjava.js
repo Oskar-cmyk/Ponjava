@@ -161,8 +161,17 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get the Ponjava text element
     var ponjavaText = document.getElementById("text");
 
-    // Show the modal on page load
-    modal.style.display = "flex";
+    // Check if modal has been shown before
+    var modalShownBefore = localStorage.getItem("modalShown");
+    console.log("Modal shown before:", modalShownBefore);
+
+    // Show the modal only if it hasn't been shown before
+    if (!modalShownBefore) {
+        modal.style.display = "flex";
+        // Mark the modal as shown in localStorage
+        localStorage.setItem("modalShown", "true");
+        console.log("Modal shown for the first time. Setting modalShown to true.");
+    }
 
     // When the user clicks anywhere on the modal, close it
     modal.onclick = function() {
@@ -181,7 +190,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 .catch(console.error);
         } else {
             // If gyroscope or permission request not supported, show an alert
-            pass
+            // Handle accordingly
         }
     }
 
@@ -191,5 +200,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     
 });
+
 
 
