@@ -176,30 +176,31 @@ document.addEventListener('DOMContentLoaded', function () {
     // When the user clicks anywhere on the modal, close it
     modal.onclick = function() {
         modal.style.display = "none";
+        console.log("Modal closed.");
         if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
             DeviceOrientationEvent.requestPermission()
                 .then(permissionState => {
                     if (permissionState === 'granted') {
                         // Initialize gyroscope effect if permission granted
+                        console.log("Gyroscope permission granted.");
                         initializeGyroEffect();
                     } else {
                         // Handle cases where permission denied
                         alert("Permission denied for gyroscope");
                     }
                 })
-                .catch(console.error);
+                .catch(error => {
+                    console.error("Error requesting gyroscope permission:", error);
+                });
         } else {
             // If gyroscope or permission request not supported, show an alert
-            // Handle accordingly
+            console.log("Gyroscope or permission request not supported.");
         }
     }
 
     // When the user clicks on the Ponjava text, show the modal
     ponjavaText.onclick = function() {
         modal.style.display = "flex";
+        console.log("Ponjava text clicked. Modal shown.");
     }
-    
 });
-
-
-
