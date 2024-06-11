@@ -16,7 +16,7 @@ if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
 
 function initializeGyroEffect() {
     let isMoving = true; // Initialize to true for "Razgrni" option
-    const requestPermissionButton = document.getElementById('requestPermissionButton');
+    
 
     // Function to update the rectangle based on device orientation
     function updateRectangle(event) {
@@ -38,29 +38,10 @@ function initializeGyroEffect() {
         const rectangle = document.querySelector('.rectangle');
         rectangle.style.transform = 'none'; // Reset the transformation
     }
-
+    enableGyro();
     // Event listener to handle device orientation and update the rectangle
     function enableGyro() {
         window.addEventListener('deviceorientation', updateRectangle);
-    }
-
-    if (isIPhone && typeof DeviceOrientationEvent.requestPermission === 'function') {
-        requestPermissionButton.style.display = 'block'; // Show the permission button
-        requestPermissionButton.addEventListener('click', function() {
-            DeviceOrientationEvent.requestPermission()
-                .then(response => {
-                    if (response === 'granted') {
-                        enableGyro();
-                        requestPermissionButton.style.display = 'none'; // Hide the permission button
-                    } else {
-                        alert('Permission to access gyroscope data was denied.');
-                    }
-                })
-                .catch(console.error);
-        });
-    } else if (isAndroid) {
-        // If it's an Android device, enable gyro directly
-        enableGyro();
     }
 }
 
