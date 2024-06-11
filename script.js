@@ -34,6 +34,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Get the modal
     var modal = document.getElementById("imageModal");
 
+    // Get the Ponjava text element
+    var ponjavaText = document.getElementById("text");
+
     // Show the modal on page load
     modal.style.display = "flex";
 
@@ -41,6 +44,12 @@ document.addEventListener('DOMContentLoaded', function () {
     modal.onclick = function() {
         modal.style.display = "none";
     }
+
+    // When the user clicks on the Ponjava text, show the modal
+    ponjavaText.onclick = function() {
+        modal.style.display = "flex";
+    }
 });
+
 
 
