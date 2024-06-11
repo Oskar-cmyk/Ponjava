@@ -4,6 +4,8 @@ const isAndroid = /Android/i.test(navigator.userAgent);
 
 if ((isIPhone || isAndroid) && window.DeviceOrientationEvent) {
     // Execute the script using gyroscope for iPhones and Android devices
+    const toggleButtons = document.getElementById('toggleButtons');
+    toggleButtons.style.display = 'none';
     initializeGyroEffect();
 } else {
     // Hide the "Request Permission" button on other devices
