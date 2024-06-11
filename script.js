@@ -29,3 +29,18 @@ window.onload = function() {
         setLanguage(savedLanguage);
     }
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the modal
+    var modal = document.getElementById("imageModal");
+
+    // Show the modal on page load
+    modal.style.display = "flex";
+
+    // When the user clicks anywhere on the modal, close it
+    modal.onclick = function() {
+        modal.style.display = "none";
+    }
+});
+
+
