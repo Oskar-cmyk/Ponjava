@@ -170,3 +170,43 @@ document.addEventListener('DOMContentLoaded', applyHourlyColor);
 
 // Apply a new random color every hour
 setInterval(applyHourlyColor, 3600000); // 3600000 milliseconds = 1 hour
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Get the modal
+    var modal = document.getElementById("imageModal");
+
+    // Get the Ponjava text element
+    var ponjavaText = document.getElementById("text");
+
+    // Show the modal on page load
+    modal.style.display = "flex";
+
+    // When the user clicks anywhere on the modal, close it
+    modal.onclick = function() {
+        modal.style.display = "none";
+        if (window.DeviceOrientationEvent && typeof DeviceOrientationEvent.requestPermission === 'function') {
+            DeviceOrientationEvent.requestPermission()
+                .then(permissionState => {
+                    if (permissionState === 'granted') {
+                        // Initialize gyroscope effect if permission granted
+                        initializeGyroEffect();
+                    } else {
+                        // Handle cases where permission denied
+                        alert("Permission denied for gyroscope");
+                    }
+                })
+                .catch(console.error);
+        } else {
+            // If gyroscope or permission request not supported, show an alert
+            pass
+        }
+    }
+
+    // When the user clicks on the Ponjava text, show the modal
+    ponjavaText.onclick = function() {
+        modal.style.display = "flex";
+    }
+    
+});
+
+
