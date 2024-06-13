@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
     console.log("Modal shown before:", modalShownBefore);
 
     // Show the modal only if it hasn't been shown before
-    if (!modalShownBefore) {
+    if (modalShownBefore !== "true") {
         modal.style.display = "flex";
         // Mark the modal as shown in localStorage
         localStorage.setItem("modalShown", "true");
@@ -198,9 +198,37 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+});
+
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    var ponjavaText = document.getElementById("text");
+    const modal = document.getElementById('ponjavaModal');
+    const closeModal = modal.querySelector('.close');
+
+    // Function to close the modal
+    const closeModalFunction = () => {
+        modal.style.display = 'none';
+        console.log('Modal closed.');
+    }
+
+    // Event listener for the close button
+    closeModal.onclick = closeModalFunction;
+
+    // Event listener for clicks outside the modal content to close the modal
+    window.onclick = (event) => {
+        if (event.target == modal) {
+            closeModalFunction();
+        }
+    };
+
     // When the user clicks on the Ponjava text, show the modal
     ponjavaText.onclick = function() {
-        modal.style.display = "flex";
-        console.log("Ponjava text clicked. Modal shown.");
-    }
+        modal.style.display = 'flex';
+        console.log('Ponjava text clicked. Modal shown.');
+    };
+
+
 });
+
+
