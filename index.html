@@ -1,53 +1,111 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="sl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="description" content="Ponjava je zaključna razstava študentov fotografije na Akademiji za likovno umetnost in oblikovanje, ki poteka že tretje leto zapored.">
-    <meta name="keywords" content="Ponjava, razstava, fotografija, ALUO">
-    <meta name="author" content="Ponjava">
-    <meta name="robots" content="index, follow">
-    <title>Ponjava</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <button id="slButton">Slovenščina</button>
-        <button id="enButton">English</button>
-    </header>
-    
-    <div class="container">
-        <div class="rectangle" id="rectangle">
-            <p class="text" id="text">Ponjava</p>
-            <a href="o_nas" class="text top-left" data-lang-sl="O nas" data-lang-en="About Us">O nas</a>
-            <a href="kontakt" class="text top-right" data-lang-sl="Kontakt" data-lang-en="Contact">Kontakt</a>
-            <a href="umetnice" class="text bottom-left" data-lang-sl="Umetnice_ki" data-lang-en="Artists">Umetnice_ki</a>
-            <a href="preteklo" class="text bottom-right" data-lang-sl="Preteklo" data-lang-en="Past">Preteklo</a>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <meta
+            name="description"
+            content="Ponjava je zaključna razstava študentov fotografije na Akademiji za likovno umetnost in oblikovanje, ki poteka že tretje leto zapored."
+        />
+        <meta name="keywords" content="Ponjava, razstava, fotografija, ALUO" />
+        <meta name="author" content="Ponjava" />
+        <meta name="robots" content="index, follow" />
+        <title>Ponjava</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header>
+            <button id="slButton">Slovenščina</button>
+            <button id="enButton">English</button>
+        </header>
+
+        <div class="container">
+            <div class="rectangle" id="rectangle">
+                <p class="text" id="text">Ponjava</p>
+                <a
+                    href="o_nas"
+                    class="text top-left"
+                    data-lang-sl="O nas"
+                    data-lang-en="About Us"
+                    >O nas</a
+                >
+                <a
+                    href="kontakt"
+                    class="text top-right"
+                    data-lang-sl="Kontakt"
+                    data-lang-en="Contact"
+                    >Kontakt</a
+                >
+                <a
+                    href="umetnice"
+                    class="text bottom-left"
+                    data-lang-sl="Umetnice_ki"
+                    data-lang-en="Artists"
+                    >Umetnice_ki</a
+                >
+                <a
+                    href="preteklo"
+                    class="text bottom-right"
+                    data-lang-sl="Preteklo"
+                    data-lang-en="Past"
+                    >Preteklo</a
+                >
+            </div>
         </div>
-    </div>
-    
-    <div id="toggleButtons">
-        <button id="toggleButton" data-lang-sl="Preteguj" data-lang-en="Stretch">Preteguj</button>
-        <button id="requestPermissionButton" data-lang-sl="Preteguj" data-lang-en="Stretch">Preteguj</button>
-    </div>
 
-
-    <div id="imageModal" class="modal">
-        <div class="modal-content">
-            <img src="img/Screenshot 2024-06-11 at 11.48.48.png" alt="Ponjava Image" class="modal-image">
+        <div id="toggleButtons">
+            <button
+                id="toggleButton"
+                data-lang-sl="Preteguj"
+                data-lang-en="Stretch"
+            >
+                Preteguj
+            </button>
+            <button
+                id="requestPermissionButton"
+                data-lang-sl="Preteguj"
+                data-lang-en="Stretch"
+            >
+                Preteguj
+            </button>
         </div>
-    </div>
 
-    <div id="ponjavaModal" class="modal1">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <img src="img/program_ig.png" alt="Ponjava Image" class="modal-image">
+        <div id="imageModal" class="modal">
+            <div class="modal-content">
+                <p>Dobrodošli na stran Ponjava!</p>
+            </div>
         </div>
-    </div>
-    <script src="script.js"></script>
-    <script src="script_ponjava.js"></script>
 
-</body>
-<footer>©Ponjava 2024 | <a href="https://www.instagram.com/foto_rudnik/" target="_blank" rel="noopener noreferrer" class="instagram-link">Instagram</a></footer>
+        <div id="ponjavaModal" class="modal1">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <img
+                    src="img/presernova.jpg"
+                    alt="Presernova nagrada"
+                    class="modal-image"
+                />
+            </div>
+        </div>
+        <script src="script.js"></script>
+        <script src="script_ponjava.js"></script>
+    </body>
+    <footer>
+        ©Ponjava 2025 |
+        <a
+            href="https://www.instagram.com/foto_rudnik/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="instagram-link"
+            >Instagram</a
+        >|
+        <p>Website Powered by</p>
+        <a
+            href="https://oskarkandy.xyz/index"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="website-link"
+            >Kandela Solver</a
+        >
+    </footer>
 </html>
